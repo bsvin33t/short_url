@@ -1,4 +1,4 @@
-<%= form_for(:link, url: links_path) do |f| %>
-    URL: <%= f.text_field :web_url %>
-    <%= f.submit %>
+<%= form_for :link, url: links_path, method: :post, html: {class: 'navbar-form navbar-left'} do |f| %>
+    <%= f.text_field :web_url, class: 'form-control', placeholder: 'Shorten Link' %>
+    <%= f.submit 'Shorten Link', class: 'btn btn-default' %>
 <% end %>

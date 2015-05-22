@@ -1,0 +1,4 @@
+<tr>
+  <td><%= link.web_url %></td>
+  <td><%= link_to "#{request.protocol}#{request.host_with_port}/#{link.slug}", "#{request.protocol}#{request.host_with_port}/#{link.slug}" %></td>
+</tr>

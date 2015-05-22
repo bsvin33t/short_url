@@ -1,16 +1,11 @@
-<%= render partial: 'shared/link_form' %>
-<br/>
-<br/>
-<table>
-  <th>
-  <td>website</td>
-  <td>slug</td>
-  </th>
-
-  <% @links.each do |link| %>
-      <tr>
-        <td><%= link.web_url %></td>
-        <td><%= link.slug.inspect %></td>
-      </tr>
-  <% end %>
+<table class="table table-striped">
+  <thead>
+  <tr>
+    <th>Website</th>
+    <th>Link</th>
+  </tr>
+  </thead>
+  <tbody>
+  <%= render :partial => 'shared/links', :collection => @links, as: :link %>
+  </tbody>
 </table>
