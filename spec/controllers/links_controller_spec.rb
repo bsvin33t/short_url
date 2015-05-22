@@ -12,4 +12,13 @@ RSpec.describe LinksController, type: :controller do
     end
   end
 
+  describe 'POST create' do
+    it 'should create a link row to the database' do
+      expect{
+        post :create, link: {web_url: 'google.com'}
+      }.to change{Link.count}.by(1)
+      expect(response).to redirect_to(links_path)
+    end
+  end
+
 end
