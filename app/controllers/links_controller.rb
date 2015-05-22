@@ -9,7 +9,7 @@ class LinksController < ApplicationController
   end
 
   def show
-    link = Link.slug_decoding(params[:slug])
+    link = Link.slug_decode(params[:slug])
     redirect_to link.web_url
   end
 
