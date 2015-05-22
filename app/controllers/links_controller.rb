@@ -4,7 +4,12 @@ class LinksController < ApplicationController
   end
 
   def create
-    Link.create(web_url: link_params[:web_url])
+    link = Link.new(web_url: link_params[:web_url])
+    if link.save
+      flash[:success] = 'Link has been created successfully.'
+    else
+      flash[:error] = "#{link.errors.full_messages.join(',')}"
+    end
     redirect_to(links_path)
   end
 

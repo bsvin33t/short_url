@@ -15,3 +15,7 @@
  */
 @import "bootstrap-sprockets";
 @import "bootstrap";
+
+.alert-error{
+  @extend .alert-danger
+}
