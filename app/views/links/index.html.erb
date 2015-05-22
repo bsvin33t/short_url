@@ -1,0 +1,16 @@
+<%= render partial: 'shared/link_form' %>
+<br/>
+<br/>
+<table>
+  <th>
+  <td>website</td>
+  <td>slug</td>
+  </th>
+
+  <% @links.each do |link| %>
+      <tr>
+        <td><%= link.web_url %></td>
+        <td><%= link.slug.inspect %></td>
+      </tr>
+  <% end %>
+</table>

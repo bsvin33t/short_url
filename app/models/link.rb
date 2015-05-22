@@ -21,13 +21,18 @@ class Link < ActiveRecord::Base
   private
 
   def add_slug
-    temp = ''
-    base = ALPHABET.length
-    while self.id > 0
-      temp << ALPHABET[self.id.modulo(base)]
-      self.id /= base
-    end
-    update_attributes(slug: temp.reverse)
+    update_attributes(slug: slug_encode(id))
   end
 
+
+  def slug_encode(i)
+    return ALPHABET[0] if i == 0
+    s = ''
+    base = ALPHABET.length
+    while i > 0
+      s << ALPHABET[i.modulo(base)]
+      i /= base
+    end
+    s.reverse
+  end
 end
