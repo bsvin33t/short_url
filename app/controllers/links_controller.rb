@@ -8,6 +8,11 @@ class LinksController < ApplicationController
     redirect_to(links_path)
   end
 
+  def show
+    link = Link.slug_decoding(params[:slug])
+    redirect_to link.web_url
+  end
+
   private
 
   def link_params

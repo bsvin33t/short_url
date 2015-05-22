@@ -20,5 +20,19 @@ RSpec.describe LinksController, type: :controller do
       expect(response).to redirect_to(links_path)
     end
   end
+  
+  describe 'GET show' do
+    let(:link) {Link.create(web_url: 'http://example.com')}
+    it 'should fetch the saved link from the db and redirect to the appropriate page' do
+      get :show, slug: link.slug_encoding
+      expect(response).to redirect_to 'http://example.com'
+    end
+
+    it 'should redirect to the index page if there is no link associated with the slug' do
+      get :show, slug: 'x'
+      expect(response).to redirect_to(links_path)
+    end
+
+  end
 
 end

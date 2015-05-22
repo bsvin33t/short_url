@@ -16,4 +16,18 @@ class Link < ActiveRecord::Base
     slug.reverse
   end
 
+  def self.slug_decoding(slug)
+    id = 0
+    base = ALPHABET.length
+    slug.each_char { |c| id = id * base + ALPHABET.index(c) }
+    Link.where(id: id).last || NullLink.new
+  end
+
+
+  class NullLink
+    def web_url
+      '/links'
+    end
+  end
+
 end

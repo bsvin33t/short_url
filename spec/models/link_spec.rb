@@ -25,4 +25,18 @@ RSpec.describe Link, type: :model do
       expect(link.slug_encoding).to eq('qi')
     end
   end
+
+
+  describe 'Slug Decoding' do
+    it 'decodes slug for the 1st record in the system' do
+      url = 'google.com'
+      link = Link.create!(id: 1, web_url: url)
+      expect(Link.slug_decoding('b')).to eq(link)
+    end
+
+    it 'returns a NullLink object if decoding for slug is not available' do
+      expect(Link.slug_decoding('x')).to be_kind_of(Link::NullLink)
+    end
+  end
+
 end
