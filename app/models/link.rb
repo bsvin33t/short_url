@@ -7,9 +7,9 @@ class Link < ActiveRecord::Base
     Link.where(id: row_id).last || NullLink.new
   end
 
-  validates :web_url, presence: true
+  validates :web_url, url: {no_local: true, no_scheme: true, no_spaces: true}
 
-  after_create :add_slug
+  after_create :add_slug, :add_scheme
 
 
   class NullLink
@@ -19,6 +19,13 @@ class Link < ActiveRecord::Base
   end
 
   private
+
+  def add_scheme
+    u = URI.parse(self.web_url)
+    if (!u.scheme)
+      update_attributes(web_url: "http://#{web_url}")
+    end
+  end
 
   def add_slug
     update_attributes(slug: slug_encode(id))

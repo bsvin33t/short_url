@@ -39,4 +39,18 @@ RSpec.describe Link, type: :model do
     end
   end
 
+  describe 'after save' do
+    it 'should get prepended with `http` if there is no scheme attached' do
+      url = 'google.com'
+      link = Link.create!(web_url: url)
+      expect(link.web_url).to eq("http://#{url}")
+    end
+
+    it 'should not modify the existing schema' do
+      url = 'ftp://myweb.co'
+      link = Link.create!(web_url: url)
+      expect(link.web_url).to eq(url)
+    end
+  end
+
 end
