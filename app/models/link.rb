@@ -7,7 +7,7 @@ class Link < ActiveRecord::Base
     Link.where(id: row_id).last || NullLink.new
   end
 
-  validates :web_url, url: {no_local: true, no_scheme: true, no_spaces: true}
+  validates :web_url, url: {no_local: true, no_scheme: true, no_spaces: true}, presence: true
 
   after_create :add_slug, :add_scheme
 
