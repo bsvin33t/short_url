@@ -1,5 +1,5 @@
 GIT
-  remote: git@github.com:bsvin33t/validates_url.git
+  remote: git://github.com/bsvin33t/validates_url.git
   revision: e9c718a68fa913f202b3a0e3217d580737819963
   specs:
     validate_url (1.0.0)
